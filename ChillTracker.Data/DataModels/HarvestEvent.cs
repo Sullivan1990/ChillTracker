@@ -8,6 +8,7 @@ namespace ChillTracker.Data.DataModels
 {
     public class HarvestEvent
     {
+        public string HarvestEventID { get; set; }
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public int? Quantity { get; set; }
         public double? WeightGrams { get; set; }

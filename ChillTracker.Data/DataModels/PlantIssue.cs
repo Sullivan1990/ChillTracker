@@ -8,6 +8,8 @@ namespace ChillTracker.Data.DataModels
 {
     public class PlantIssue
     {
+        public string PlantIssueID { get; set; }
+
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public string? Description { get; set; }
         public string? SolutionApplied { get; set; }
