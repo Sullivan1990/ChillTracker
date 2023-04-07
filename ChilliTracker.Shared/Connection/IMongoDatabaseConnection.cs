@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChillTracker.API.Connection
+namespace ChillTracker.Shared.Connection
 {
     public interface IMongoDatabaseConnection
     {
