@@ -10,9 +10,4 @@
     <ProjectReference Include="..\ChillTracker.Data\ChillTracker.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Repository\" />
-  </ItemGroup>
-
 </Project>
