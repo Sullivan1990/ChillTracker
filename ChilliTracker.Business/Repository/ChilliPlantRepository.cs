@@ -78,7 +78,15 @@ namespace ChilliTracker.Business.Repository
 
         public ICollection<ChilliPlant> GetAllNotGerminated()
         {
-            throw new NotImplementedException();
+
+            var filter = Builders<ChilliPlant>.Filter.Or(
+                Builders<ChilliPlant>.Filter.Not(
+                Builders<ChilliPlant>.Filter.Exists(x => x.Germinated)),
+                Builders<ChilliPlant>.Filter.Eq(c => c.Germinated, null));
+
+
+            var result = _plants.Find(filter).ToList();
+            return result;
         }
 
         public ICollection<ChilliPlant> GetAllWithFilter(ChilliPlantFilter filterParameters)
