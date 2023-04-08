@@ -16,6 +16,8 @@ namespace ChilliTracker.Business.Interfaces
         // Get All Chillies
         ICollection<ChilliPlant> GetAll();
 
+        ICollection<ChilliPlant> GetAllForUser(string userID);
+
         // Get All Chillies with Filter
         ICollection<ChilliPlant> GetAllWithFilter(ChilliPlantFilter filterParameters);
 

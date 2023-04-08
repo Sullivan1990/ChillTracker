@@ -9,7 +9,6 @@ namespace ChilliTracker.Shared.Connection
 {
     public interface IMongoDatabaseConnection
     {
-        IMongoDatabase GetProductionDatabase(string databaseName = "");
-        IMongoDatabase GetTestingDatabase(string databaseName = "");
+        IMongoDatabase GetDatabase(string databaseName = "");
     }
 }

@@ -19,7 +19,7 @@ namespace ChilliTracker.Business.Repository
         private IMongoCollection<ChilliPlant> _plants;
         public ChilliPlantRepository(IMongoDatabaseConnection connection)
         {
-            _database = connection.GetProductionDatabase();
+            _database = connection.GetDatabase();
             _plants = _database.GetCollection<ChilliPlant>("ChilliPlants");
         }
 
@@ -65,6 +65,12 @@ namespace ChilliTracker.Business.Repository
         {
             return _plants.Find(Builders<ChilliPlant>.Filter.Empty).ToList();
         }
+
+        public ICollection<ChilliPlant> GetAllForUser(string userID)
+        {
+            return _plants.Find(Builders<ChilliPlant>.Filter.Eq(c => c.UserID, userID)).ToList();
+        }
+
 
         public ICollection<ChilliPlant> GetAllDueForPotting()
         {

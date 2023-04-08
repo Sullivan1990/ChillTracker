@@ -15,16 +15,11 @@ namespace ChilliTracker.Shared.Connection
         {
             _connections = connections;
         }
-        public IMongoDatabase GetProductionDatabase(string databaseName = "")
+        public IMongoDatabase GetDatabase(string databaseName = "")
         {
             var client = new MongoClient(_connections.ProductionServer);
             return client.GetDatabase(String.IsNullOrEmpty(databaseName) ? _connections.ProductionDatabase : databaseName);
         }
 
-        public IMongoDatabase GetTestingDatabase(string databaseName = "")
-        {
-            var client = new MongoClient(_connections.TestingServer);
-            return client.GetDatabase(String.IsNullOrEmpty(databaseName) ? _connections.TestingDatabase : databaseName);
-        }
     }
 }
