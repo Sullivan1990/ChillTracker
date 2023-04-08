@@ -1,6 +1,6 @@
-﻿using ChillTracker.Data.DataModels;
-using ChillTracker.Data.DTO;
-using ChillTracker.Data.Filters;
+﻿using ChilliTracker.Data.DataModels;
+using ChilliTracker.Data.DTO;
+using ChilliTracker.Data.Filters;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace ChilliTracker.Business.Interfaces
         ICollection<ChilliPlant> GetAllNotGerminated();
 
         // Add new Chilli
-        void AddNewChilli(ChilliPlantCreateNewDTO newChilli);
+        void AddNewChilli(ChilliPlantCreateNewDTO newChilli, string UserID);
 
         // Add new Harvest Event to Chilli
         void AddHarvestEventToChilli(ObjectId chilliPlantId, HarvestEvent harvestEvent);

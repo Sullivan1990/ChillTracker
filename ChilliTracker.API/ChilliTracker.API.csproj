@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -20,7 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ChilliTracker.Business\ChilliTracker.Business.csproj" />
     <ProjectReference Include="..\ChilliTracker.Shared\ChilliTracker.Shared.csproj" />
-    <ProjectReference Include="..\ChillTracker.Data\ChillTracker.Data.csproj" />
+    <ProjectReference Include="..\ChillTracker.Data\ChilliTracker.Data.csproj" />
   </ItemGroup>
 
 </Project>

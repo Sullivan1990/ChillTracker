@@ -1,5 +1,5 @@
 using ChilliTracker.Shared.Settings;
-using ChillTracker.Shared.Connection;
+using ChilliTracker.Shared.Connection;
 
 var builder = WebApplication.CreateBuilder(args);
 

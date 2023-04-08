@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChillTracker.Shared.Connection
+namespace ChilliTracker.Shared.Connection
 {
     public class MongoDatabaseConnection : IMongoDatabaseConnection
     {

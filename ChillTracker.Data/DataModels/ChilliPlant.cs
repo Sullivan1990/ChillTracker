@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChillTracker.Data.DataModels
+namespace ChilliTracker.Data.DataModels
 {
     public class ChilliPlant
     {
@@ -18,7 +18,7 @@ namespace ChillTracker.Data.DataModels
         public DateTime? FirstHarvest { get; set; }
         public bool IsHealthy { get; set; } = true;
         public bool IsGerminated { get; set; } = false;
-        public ObjectId UserID { get; set; }
+        public string UserID { get; set; }
         public List<HarvestEvent> HarvestEvents { get; set; } = new List<HarvestEvent>();
         public List<PlantIssue> PlantIssues { get; set; } = new List<PlantIssue>();
         public List<PlantPottingEvent> PlantPottingEvents { get; set; } = new List<PlantPottingEvent>();

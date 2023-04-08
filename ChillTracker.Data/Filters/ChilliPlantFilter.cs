@@ -1,4 +1,4 @@
-﻿using ChillTracker.Data.DataModels;
+﻿using ChilliTracker.Data.DataModels;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChillTracker.Data.Filters
+namespace ChilliTracker.Data.Filters
 {
     public class ChilliPlantFilter
     {

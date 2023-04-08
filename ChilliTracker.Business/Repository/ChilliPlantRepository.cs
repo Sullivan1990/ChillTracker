@@ -1,8 +1,8 @@
 ﻿using ChilliTracker.Business.Interfaces;
-using ChillTracker.Data.DataModels;
-using ChillTracker.Data.DTO;
-using ChillTracker.Data.Filters;
-using ChillTracker.Shared.Connection;
+using ChilliTracker.Data.DataModels;
+using ChilliTracker.Data.DTO;
+using ChilliTracker.Data.Filters;
+using ChilliTracker.Shared.Connection;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -25,7 +25,10 @@ namespace ChilliTracker.Business.Repository
 
         public void AddHarvestEventToChilli(ObjectId chilliPlantId, HarvestEvent harvestEvent)
         {
-            throw new NotImplementedException();
+            var filter = Builders<ChilliPlant>.Filter.Eq(c => c._id, chilliPlantId);
+            var update = Builders<ChilliPlant>.Update.Push(c => c.HarvestEvents, harvestEvent);
+
+            _plants.UpdateOne(filter, update);
         }
 
         public void AddIssueToChilli(ObjectId chilliPlantId, PlantIssue plantIssue)
@@ -33,9 +36,24 @@ namespace ChilliTracker.Business.Repository
             throw new NotImplementedException();
         }
 
-        public void AddNewChilli(ChilliPlantCreateNewDTO newChilli)
+        public void AddNewChilli(ChilliPlantCreateNewDTO newChilli, string userID)
         {
-            throw new NotImplementedException();
+            ChilliPlant newChilliPlant = new ChilliPlant()
+            {
+                Variety = newChilli.Variety,
+                Species = newChilli.Species,
+                Identifier = newChilli.Identifier,
+                Planted = newChilli.Planted ?? DateTime.UtcNow,
+                IsGerminated = newChilli.IsGerminated,
+                IsHealthy = newChilli.IsHealthy,
+                UserID = userID,
+                HarvestEvents = new List<HarvestEvent>(),
+                PlantPottingEvents = new List<PlantPottingEvent>(),
+                PlantIssues = new List<PlantIssue>()
+
+            };
+
+            _plants.InsertOne(newChilliPlant);
         }
 
         public void AddPottingEventToChilli(ObjectId chilliPlantId, PlantPottingEvent pottingEvent)

@@ -1,5 +1,5 @@
-using ChillTracker.Shared.Connection;
-using ChillTracker.Data.DataModels;
+using ChilliTracker.Shared.Connection;
+using ChilliTracker.Data.DataModels;
 using MongoDB.Driver;
 
 namespace ChilliTracker.Tests
@@ -16,7 +16,7 @@ namespace ChilliTracker.Tests
             var testingDBConnection = new Shared.Settings.MongoDBConnections
             {
                 TestingServer = "mongodb://localhost:27017",
-                TestingDatabase = "ChillTracker_Tests"
+                TestingDatabase = "ChilliTracker_Tests"
             };
             _connection = new MongoDatabaseConnection(testingDBConnection);
             _database = _connection.GetTestingDatabase();

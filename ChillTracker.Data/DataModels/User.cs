@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChillTracker.Data.DataModels
+namespace ChilliTracker.Data.DataModels
 {
     public class User
     {
