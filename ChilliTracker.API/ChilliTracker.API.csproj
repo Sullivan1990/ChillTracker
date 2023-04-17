@@ -20,7 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ChilliTracker.Business\ChilliTracker.Business.csproj" />
     <ProjectReference Include="..\ChilliTracker.Shared\ChilliTracker.Shared.csproj" />
-    <ProjectReference Include="..\ChillTracker.Data\ChilliTracker.Data.csproj" />
+    <ProjectReference Include="..\ChilliTracker.Data\ChilliTracker.Data.csproj" />
   </ItemGroup>
 
 </Project>
