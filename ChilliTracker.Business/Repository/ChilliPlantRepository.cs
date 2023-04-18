@@ -23,7 +23,7 @@ namespace ChilliTracker.Business.Repository
             _plants = _database.GetCollection<ChilliPlant>("ChilliPlants");
         }
 
-        public void AddHarvestEventToChilli(ObjectId chilliPlantId, HarvestEvent harvestEvent)
+        public void AddHarvestEventToChilli(ObjectId chilliPlantId, HarvestEvent harvestEvent, string userID)
         {
             var filter = Builders<ChilliPlant>.Filter.Eq(c => c._id, chilliPlantId);
             var update = Builders<ChilliPlant>.Update.Push(c => c.HarvestEvents, harvestEvent);
@@ -31,7 +31,7 @@ namespace ChilliTracker.Business.Repository
             _plants.UpdateOne(filter, update);
         }
 
-        public void AddIssueToChilli(ObjectId chilliPlantId, PlantIssue plantIssue)
+        public void AddIssueToChilli(ObjectId chilliPlantId, PlantIssue plantIssue, string userID)
         {
             throw new NotImplementedException();
         }
@@ -56,13 +56,14 @@ namespace ChilliTracker.Business.Repository
             _plants.InsertOne(newChilliPlant);
         }
 
-        public void AddPottingEventToChilli(ObjectId chilliPlantId, PlantPottingEvent pottingEvent)
+        public void AddPottingEventToChilli(string chilliPlantId, PlantPottingEvent pottingEvent, string userID)
         {
-            throw new NotImplementedException();
+            
         }
 
         public ICollection<ChilliPlant> GetAll()
         {
+
             return _plants.Find(Builders<ChilliPlant>.Filter.Empty).ToList();
         }
 
@@ -72,7 +73,7 @@ namespace ChilliTracker.Business.Repository
         }
 
 
-        public ICollection<ChilliPlant> GetAllDueForPotting()
+        public ICollection<ChilliPlant> GetAllDueForPotting(string UserID = "")
         {
             var pottingDateExpiry = DateTime.UtcNow.AddMonths(-6);
 
@@ -100,7 +101,7 @@ namespace ChilliTracker.Business.Repository
 
         }
 
-        public ICollection<ChilliPlant> GetAllNotGerminated()
+        public ICollection<ChilliPlant> GetAllNotGerminated(string UserID = "")
         {
 
             var filter = Builders<ChilliPlant>.Filter.Or(
@@ -118,27 +119,27 @@ namespace ChilliTracker.Business.Repository
             throw new NotImplementedException();
         }
 
-        public ICollection<ChilliPlant> GetAllWithIssues()
+        public ICollection<ChilliPlant> GetAllWithIssues(string UserID = "")
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveChilli(ObjectId chilliPlantId)
+        public void RemoveChilli(ObjectId chilliPlantId, string userID)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveChilliHarvestEvent(ObjectId chilliPlantId, string harvestEventID)
+        public void RemoveChilliHarvestEvent(ObjectId chilliPlantId, string harvestEventID, string userID)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveChilliIssue(ObjectId chilliPlantId, string plantIssueID)
+        public void RemoveChilliIssue(ObjectId chilliPlantId, string plantIssueID, string userID)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveChilliPottingEvent(ObjectId chilliPlantId, string pottingEventID)
+        public void RemoveChilliPottingEvent(ObjectId chilliPlantId, string pottingEventID, string userID)
         {
             throw new NotImplementedException();
         }
