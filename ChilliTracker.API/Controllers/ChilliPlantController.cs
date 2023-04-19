@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using System.Numerics;
+using System.Security.Cryptography;
 
 namespace ChilliTracker.API.Controllers
 {
@@ -35,7 +37,7 @@ namespace ChilliTracker.API.Controllers
 
         [Authorize]
         [HttpPost("AddPottingEventToChilli/{chilliPlantId}")]
-        public IActionResult AddPottingEventToChilli([FromQuery]string chilliPlantId, [FromBody]PlantPottingEventDTO pottingEvent)
+        public IActionResult AddPottingEventToChilli([FromRoute]string chilliPlantId, [FromBody]PlantPottingEventDTO pottingEvent)
         {
             if (pottingEvent == null) { return BadRequest("No Chilli Plant Data received"); }
 
@@ -56,6 +58,34 @@ namespace ChilliTracker.API.Controllers
             _chilliRepo.AddPottingEventToChilli(chilliPlantId, newPottingEvent, userId);
 
             return CreatedAtAction("AddPottingEventToChilli", newPottingEvent);
+        }
+
+        [Authorize]
+        [HttpGet("GetAllPlants")]
+        public IActionResult GetAllChilliPlantsForUser()
+        {
+            string userId = GetUserIDFromClaim();
+            if (String.IsNullOrEmpty(userId)) return Unauthorized();
+
+            var chillies = _chilliRepo.GetAllForUser(userId);
+
+            var chilliReturnList = chillies.Select(c => new ChilliPlantReturnDTO
+            {
+                _id = c._id.ToString(),
+                Identifier = c.Identifier,
+                Species = c.Species,
+                Variety = c.Variety,
+                Planted = c.Planted,
+                Germinated = c.Germinated,
+                FirstHarvest = c.FirstHarvest,
+                IsHealthy = c.IsHealthy,
+                IsGerminated = c.IsGerminated,
+                HarvestEvents = c.HarvestEvents,
+                PlantIssues = c.PlantIssues,
+                PlantPottingEvents = c.PlantPottingEvents
+            }).AsEnumerable();
+
+            return Ok(chilliReturnList);
         }
 
         private string GetUserIDFromClaim()

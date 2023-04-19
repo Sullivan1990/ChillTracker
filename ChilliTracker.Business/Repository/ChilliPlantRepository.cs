@@ -58,7 +58,10 @@ namespace ChilliTracker.Business.Repository
 
         public void AddPottingEventToChilli(string chilliPlantId, PlantPottingEvent pottingEvent, string userID)
         {
-            
+            var filter = Builders<ChilliPlant>.Filter.Where(c => c._id == ObjectId.Parse(chilliPlantId) && c.UserID == userID);
+            var update = Builders<ChilliPlant>.Update.Push(c => c.PlantPottingEvents, pottingEvent);
+
+            var updateResult = _plants.UpdateOne(filter, update);
         }
 
         public ICollection<ChilliPlant> GetAll()
