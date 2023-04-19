@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChilliTracker.Data.DTO
 {
-    public class TokenResponse
+    public class RefreshTokenSetDTO
     {
-        public string? Token { get; set; }
         public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiry { get; set; }
     }
 }

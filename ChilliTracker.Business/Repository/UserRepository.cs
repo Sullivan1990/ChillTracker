@@ -3,6 +3,7 @@ using ChilliTracker.Business.Interfaces;
 using ChilliTracker.Data.DataModels;
 using ChilliTracker.Data.DTO;
 using ChilliTracker.Shared.Connection;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -75,6 +76,31 @@ namespace ChilliTracker.Business.Repository
         public void UpdateUserPassword(string userName, string newPassword)
         {
             throw new NotImplementedException();
+        }
+
+        public User GetUserById(string userID)
+        {
+            var filter = Builders<User>.Filter.Where(c => c._id == ObjectId.Parse(userID));
+
+            return _users.Find(filter).FirstOrDefault();
+        }
+
+        public void UpdateUserRefreshToken(string refreshTokenUpdate, string userID)
+        {
+            var filter = Builders<User>.Filter.Where(c => c._id == ObjectId.Parse(userID));
+
+            var update = Builders<User>.Update.Set(c => c.RefreshToken, refreshTokenUpdate);
+            
+            _users.UpdateOne(filter, update);
+        }
+
+        public void SetUserRefreshTokenDetails(RefreshTokenSetDTO refreshTokenSet, string userID)
+        {
+            var filter = Builders<User>.Filter.Where(c => c._id == ObjectId.Parse(userID));
+
+            var update = Builders<User>.Update.Set(c => c.RefreshToken, refreshTokenSet.RefreshToken).Set(c => c.RefreshTokenExpiry, refreshTokenSet.RefreshTokenExpiry);
+
+            _users.UpdateOne(filter, update);
         }
     }
 }

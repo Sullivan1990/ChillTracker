@@ -19,5 +19,8 @@ namespace ChilliTracker.Data.DataModels
         public string? Email { get; set; }
         public bool IsActive { get; set; } = true;
         public DateTime? LastAccess { get; set; }
+
+        public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiry { get; set; }
     }
 }

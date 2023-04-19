@@ -12,6 +12,10 @@ namespace ChilliTracker.Business.Interfaces
     {
         public User GetUserByCredentials(UserLoginDTO userLogin);
 
+        public User GetUserById(string userID);
+
+        public void SetUserRefreshTokenDetails(RefreshTokenSetDTO refreshTokenSet, string userID);
+        public void UpdateUserRefreshToken(string refreshTokenUpdate, string userID);
         public User CreateUser(UserCreateDTO newUser);
 
         public void SetUserInactive(string? userID = "", string? userName = "");
