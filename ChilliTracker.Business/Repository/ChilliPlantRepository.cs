@@ -23,9 +23,9 @@ namespace ChilliTracker.Business.Repository
             _plants = _database.GetCollection<ChilliPlant>("ChilliPlants");
         }
 
-        public void AddHarvestEventToChilli(ObjectId chilliPlantId, HarvestEvent harvestEvent, string userID)
+        public void AddHarvestEventToChilli(string chilliPlantId, HarvestEvent harvestEvent, string userID)
         {
-            var filter = Builders<ChilliPlant>.Filter.Eq(c => c._id, chilliPlantId);
+            var filter = Builders<ChilliPlant>.Filter.Where(c => c._id == ObjectId.Parse(chilliPlantId) && c.UserID == userID);
             var update = Builders<ChilliPlant>.Update.Push(c => c.HarvestEvents, harvestEvent);
 
             _plants.UpdateOne(filter, update);

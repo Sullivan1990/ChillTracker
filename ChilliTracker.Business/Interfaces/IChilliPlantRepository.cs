@@ -32,7 +32,7 @@ namespace ChilliTracker.Business.Interfaces
         void AddNewChilli(ChilliPlantCreateNewDTO newChilli, string UserID);
 
         // Add new Harvest Event to Chilli
-        void AddHarvestEventToChilli(ObjectId chilliPlantId, HarvestEvent harvestEvent, string userID);
+        void AddHarvestEventToChilli(string chilliPlantId, HarvestEvent harvestEvent, string userID);
         // Add new Potting Event to Chilli
         void AddPottingEventToChilli(string chilliPlantId, PlantPottingEvent pottingEvent, string userID);
         // Add new Issue to Chilli
